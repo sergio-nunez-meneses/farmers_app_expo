@@ -11,7 +11,7 @@ export default class Search extends React.Component {
       searchText: ""
       }
   }
-
+ 
 
 _getFood(){
   const API_ID = '24e1badd';
