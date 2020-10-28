@@ -63,12 +63,12 @@ _searchText(txt){
         </TouchableOpacity>
 
         <Image style={stileNutri.imgIcon} source={{ uri: 'https://i.ibb.co/d0TCxN9/shop-1.png' }}/>
-        <Text style={stileNutri.Title}>CARTE</Text>
+        <Text style={stileNutri.Title}>NUTRITION</Text>
       </View>
 
         <View>
           <View style={stileNutri.searchWrapper}>
-            <TextInput style={stileNutri.ricerca} onChangeText={(txt) => this._searchText(txt)} placeholder="cerca alimenti" onSubmitEditing={() => this._loadAliments()} />
+            <TextInput style={stileNutri.ricerca} onChangeText={(txt) => this._searchText(txt)} placeholder="search food" onSubmitEditing={() => this._loadAliments()} />
           </View>
         </View>
 
@@ -83,11 +83,11 @@ _searchText(txt){
           </View>
 
           <View style={stileNutri.kalWrap}>
-            <Text style={stileNutri.kal}>ENERC_KCAL: {this.state.nutrients.ENERC_KCAL}</Text>
-            <Text style={stileNutri.kal}>PROCNT: {this.state.nutrients.PROCNT}</Text>
-            <Text style={stileNutri.kal}>FAT: {this.state.nutrients.FAT}</Text>
-            <Text style={stileNutri.kal}>CHOCDF: {this.state.nutrients.CHOCDF}</Text>
-            <Text style={stileNutri.kal}>FIBTG: {this.state.nutrients.FIBTG}</Text>
+            <Text style={stileNutri.kal}>energy_KCAL: {this.state.nutrients.ENERC_KCAL}</Text>
+            <Text style={stileNutri.kal}>Proteins: {this.state.nutrients.PROCNT}</Text>
+            <Text style={stileNutri.kal}>Fat: {this.state.nutrients.FAT}</Text>
+            <Text style={stileNutri.kal}>Carbohydrates: {this.state.nutrients.CHOCDF}</Text>
+            <Text style={stileNutri.kal}>Fibers: {this.state.nutrients.FIBTG}</Text>
           </View>
 
         </View>
