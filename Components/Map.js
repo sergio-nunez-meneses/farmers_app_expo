@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         flexDirection: 'row',
-        marginTop: '170%',
+        marginTop: '150%',
         paddingLeft: '7%',
         paddingRight: '7%',
     },
