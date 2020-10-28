@@ -4,11 +4,9 @@ import {
   ScrollView,
   View,
   Text,
-  Button,
   TouchableOpacity
 } from 'react-native';
 import { getDB } from '../API/fetchDB'
-import EditFarmer from './EditFarmer'
 
 export default class FarmersList extends React.Component {
   constructor(props) {

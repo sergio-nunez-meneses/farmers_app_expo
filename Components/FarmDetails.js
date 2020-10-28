@@ -5,8 +5,7 @@ import {
   View,
   TextInput,
   Text,
-  TouchableOpacity,
-  Button
+  TouchableOpacity
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -37,7 +36,7 @@ export default class EditFarmer extends React.Component {
                   style={{ backgroundColor: '#0058b8'}}
                   onPress={() => {
                     navigation.navigate('FarmLocation', {
-                      location: item.location
+                      item: item
                     });
                 }}>
                   <Text style={styles.DataStyle}>Regarder sur la carte</Text>
