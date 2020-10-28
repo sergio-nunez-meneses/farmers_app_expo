@@ -17,28 +17,29 @@ export default class EditFarmer extends React.Component {
   render() {
     const { route, navigation } = this.props;
     const { item } = route.params;
-    const { FarmSchedules } = route.params.item;
-    console.log(FarmSchedules);
+    const { FarmProducts } = route.params.item;
+    console.log(FarmProducts);
 
     return (
       <View style={styles.MainContainer}>
         <ScrollView>
           {
-            FarmSchedules.map((item) => (
+            FarmProducts.map((item) => (
               <React.Fragment key={item.id.toString()}>
-                <Text style={styles.DataStyle}>Jour : {item.day}</Text>
-                <Text style={styles.DataStyle}>Activité: {item.activity}</Text>
-                <Text style={styles.DataStyle}>Horaires : de {item.start_time} à {item.end_time}</Text>
+                <Text style={styles.DataStyle}>Nom : {item.name}</Text>
+                <Text style={styles.DataStyle}>Saison : {item.season}</Text>
+                <Text style={styles.DataStyle}>Label : {item.ProductLabels[0].name}</Text>
+                <Text style={styles.DataStyle}>Label : {item.ProductLabels[0].image}</Text>
               </React.Fragment>
             ))
           }
         </ScrollView>
         {/* back to farm details */}
         <TouchableOpacity
-          style={{ backgroundColor: '#FF0099'}}
+          style={{backgroundColor: '#FF0099'}}
           onPress={() => { navigation.navigate('FarmDetails'); }}
         >
-          <Text style={styles.DataStyle}>Retourner à la Ferme</Text>
+          <Text style={styles.DataStyle}>Retourner à le Ferme</Text>
         </TouchableOpacity>
       </View>
     )

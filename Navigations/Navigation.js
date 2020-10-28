@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import FarmersList from '../Components/FarmersList';
 import FarmDetails from '../Components/FarmDetails';
 import FarmSchedules from '../Components/FarmSchedules';
+import FarmProducts from '../Components/FarmProducts';
 // import InsertFarmer from '../Components/InsertFarmer';
 
 export default class Navigation extends React.Component {
@@ -17,6 +18,7 @@ export default class Navigation extends React.Component {
           <this.Stack.Screen name="FarmersList" component={FarmersList}/>
           <this.Stack.Screen name="FarmDetails" component={FarmDetails}/>
           <this.Stack.Screen name="FarmSchedules" component={FarmSchedules}/>
+          <this.Stack.Screen name="FarmProducts" component={FarmProducts}/>
           {/* <this.Stack.Screen name="InsertFarmer" component={InsertFarmer}/> */}
         </this.Stack.Navigator>
       </NavigationContainer>

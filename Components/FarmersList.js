@@ -65,15 +65,9 @@ export default class FarmersList extends React.Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex:1,
+    flex: 1,
     alignItems: 'center',
     paddingTop: 10,
-    backgroundColor: '#fff'
-  },
-  CardContainer: {
-    flex: 3,
-    alignItems: 'center',
-    width: '100%',
     backgroundColor: '#fff'
   },
   TouchableOpacityContainer: {
