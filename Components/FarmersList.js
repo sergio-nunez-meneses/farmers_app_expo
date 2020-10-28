@@ -34,7 +34,7 @@ export default class FarmersList extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> Les producteurs.trices </Text>
+        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase', color: '#E8FCFD'}}>Fermes</Text>
 
         <ScrollView>
         {
@@ -43,7 +43,7 @@ export default class FarmersList extends React.Component {
               <View style={{marginVertical: 5}}>
                 <Text style={styles.DataStyle}>Avatar</Text>
                 <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
+                  style={{ backgroundColor: '#16BC81'}}
                   onPress={() => {
                     navigation.navigate('FarmDetails', {
                       item: item
@@ -68,19 +68,17 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     paddingTop: 10,
-    backgroundColor: '#fff'
+    backgroundColor: '#08585E'
   },
   CardContainer: {
     flex: 3,
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#fff'
   },
   TouchableOpacityContainer: {
     flex: 1,
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#fff'
   },
   TouchableOpacityStyle: {
     paddingTop: 20,
@@ -88,19 +86,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     width: '90%',
-    backgroundColor: '#00BCD4'
+    backgroundColor: 'rgba(232, 252, 253, 0.9)'
   },
   TextStyle: {
-    color:'#fff',
+    color:'#E8FCFD',
     textAlign:'center',
     textTransform: 'uppercase'
   },
   DataStyle: {
-    borderWidth: 1,
-    borderColor: '#ddd',
+    borderWidth: 0.5,
+    borderColor: '#16BC81',
     paddingHorizontal: 80,
     paddingVertical: 5,
-    color:'#000',
+    color:'#E8FCFD',
     textAlign:'center',
     textTransform: 'uppercase'
   }
