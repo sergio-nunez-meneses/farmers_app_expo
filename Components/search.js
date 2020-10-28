@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Button, TextInput, FlatList, Text, Image, ActivityIndicator, ImageBackground } from 'react-native';
+import { StyleSheet, View, Button, TextInput, FlatList, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class Search extends React.Component {
@@ -56,10 +56,15 @@ _searchText(txt){
     return(
       <SafeAreaView style={stileNutri.Wrapper}>
 
-        <View style={stileNutri.header}>
-          <Image style={stileNutri.imgIcon}source={{ uri: 'https://i.ibb.co/d0TCxN9/shop-1.png' }}/>
-          <Text style={stileNutri.Title}>NUTRITION</Text>
-        </View>
+      <View style={stileNutri.header}>
+        {/* ######################## NEED TO BE LINKED TO MAP OR LIST PAGE */}
+        <TouchableOpacity activeOpacity={0.4} style={stileNutri.arrow} onPress={this.home}> 
+          <Image style={stileNutri.arrow} source={{uri: 'https://i.ibb.co/RjK7Mwy/previous.png',}}/>
+        </TouchableOpacity>
+
+        <Image style={stileNutri.imgIcon} source={{ uri: 'https://i.ibb.co/d0TCxN9/shop-1.png' }}/>
+        <Text style={stileNutri.Title}>CARTE</Text>
+      </View>
 
         <View>
           <View style={stileNutri.searchWrapper}>
@@ -104,21 +109,27 @@ const stileNutri = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
   },
+  arrow: {
+    width: 33,
+    height: 33,
+    marginTop: '7%',
+    marginLeft: '3%',
+  },
   imgIcon: {
     width: 40,
     height: 40,
-    marginTop: '3%',
-    marginRight: '3%',
-    marginLeft: '32%',
-    marginBottom: '5%',
-},
-Title: {
-    color: '#E8FCFD',
     marginTop: '5%',
+    marginRight: '3%',
+    marginLeft: '26%',
+    marginBottom: '5%',
+  },
+  Title: {
+    color: '#E8FCFD',
+    marginTop: '7%',
     marginRight: 'auto',
     marginBottom: 6,
-    fontSize: 20,
-},
+    fontSize: 20
+  },
   // #######
   searchWrapper:{
     zIndex: 2,
@@ -139,6 +150,9 @@ Title: {
     width: '100%',
     height: '60%',
     backgroundColor: 'rgba(232, 252, 253, 0.8)',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    overflow: 'hidden',
   },
   img: {
     flex: 1,
