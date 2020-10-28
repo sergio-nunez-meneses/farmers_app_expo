@@ -12,5 +12,4 @@ web-build/
 # macOS
 .DS_Store
 
-Components/FarmerDetails.js
-Components/InsertFarmer.js
+Components/ClientContributions.js

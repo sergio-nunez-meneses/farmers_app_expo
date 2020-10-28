@@ -15,7 +15,7 @@ export default class EditFarmer extends React.Component {
     super(props);
     this.state = {
       tableHead: ['Jour', 'Horaires', 'Activité'],
-      widthArr: [100, 120, 120]
+      tableWidth: [100, 120, 120]
     }
   };
 
@@ -23,8 +23,15 @@ export default class EditFarmer extends React.Component {
     const { route, navigation } = this.props;
     const { item } = route.params;
     const { FarmSchedules } = route.params.item;
-    const tableRow = FarmSchedules.map(item=>([item.day, item.start_time + ' à ' + item.end_time, item.activity]));
-    // console.log(FarmSchedules);
+    console.log(FarmSchedules);
+
+    const tableRow = FarmSchedules.map(item => (
+      [
+        item.day,
+        `${item.start_time.replace(/^0(?:0:0?)?/, '')} à ${item.end_time.replace(/^0(?:0:0?)?/, '')}`,
+        item.activity
+      ]
+    ));
     // console.log(tableRow);
 
     return (
@@ -32,7 +39,7 @@ export default class EditFarmer extends React.Component {
         <ScrollView horizontal={true}>
           <View>
             <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
-              <Row data={this.state.tableHead} widthArr={this.state.widthArr} style={{height: 50}} textStyle={{textAlign: 'center', fontWeight: '100'}}/>
+              <Row data={this.state.tableHead} widthArr={this.state.tableWidth} style={{height: 50}} textStyle={{textAlign: 'center', fontWeight: '100', textTransform: 'uppercase'}}/>
             </Table>
             <ScrollView style={styles1.dataWrapper}>
               <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
@@ -41,7 +48,7 @@ export default class EditFarmer extends React.Component {
                   <Row
                     key={index}
                     data={rowData}
-                    widthArr={this.state.widthArr}
+                    widthArr={this.state.tableWidth}
                     style={[styles1.row, index%2 && {backgroundColor: '#F7F6E7'}]}
                     textStyle={styles1.text}
                   />
@@ -63,6 +70,30 @@ export default class EditFarmer extends React.Component {
     )
   }
 }
+
+const styles1 = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    paddingTop: 30,
+    backgroundColor: '#fff'
+  },
+  header: {
+    height: 50,
+    backgroundColor: '#537791'
+  },
+  text: {
+    textAlign: 'center',
+    fontWeight: '100'
+  },
+  dataWrapper: {
+    marginTop: -1
+  },
+  row: {
+    height: 40,
+    backgroundColor: '#E7E6E1'
+  }
+});
 
 const styles = StyleSheet.create({
   MainContainer: {
@@ -112,12 +143,4 @@ const styles = StyleSheet.create({
     textAlign:'center',
     textTransform: 'uppercase'
   }
-});
-
-const styles1 = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  header: { height: 50, backgroundColor: '#537791' },
-  text: { textAlign: 'center', fontWeight: '100' },
-  dataWrapper: { marginTop: -1 },
-  row: { height: 40, backgroundColor: '#E7E6E1' }
 });

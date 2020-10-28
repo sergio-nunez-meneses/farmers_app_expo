@@ -34,6 +34,7 @@ export default class EditFarmer extends React.Component {
             ))
           }
         </ScrollView>
+        
         {/* back to farm details */}
         <TouchableOpacity
           style={{backgroundColor: '#FF0099'}}

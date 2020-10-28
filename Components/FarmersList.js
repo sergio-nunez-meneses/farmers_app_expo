@@ -58,6 +58,15 @@ export default class FarmersList extends React.Component {
           ))
         }
         </ScrollView>
+        <View style={styles.TouchableOpacityContainer}>
+          <TouchableOpacity
+            activeOpacity = { .4 }
+            style={styles.TouchableOpacityStyle}
+            onPress={() => { navigation.navigate('ClientRegistration'); }}
+          >
+            <Text style={styles.TextStyle}>Contibuer à nos registres</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -71,9 +80,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   TouchableOpacityContainer: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     width: '100%',
+    marginTop: -60,
+    padding: 10,
     backgroundColor: '#fff'
   },
   TouchableOpacityStyle: {
