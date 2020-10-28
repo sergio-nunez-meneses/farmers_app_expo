@@ -32,11 +32,11 @@ export default class EditFarmer extends React.Component {
                 <Text style={styles.DataStyle}>{item.address}, {item.postal_code}</Text>
                 <Text style={styles.DataStyle}>{item.city}</Text>
 
-                {/* map */}
+                {/* farm location */}
                 <TouchableOpacity
                   style={{ backgroundColor: '#0058b8'}}
                   onPress={() => {
-                    navigation.navigate('EditFarmer', {
+                    navigation.navigate('FarmLocation', {
                       location: item.location
                     });
                 }}>
@@ -56,13 +56,21 @@ export default class EditFarmer extends React.Component {
 
                 {/* farm products */}
                 <TouchableOpacity
-                  style={{ backgroundColor: '#FF0009'}}
+                  style={{ backgroundColor: '#0058b8'}}
                   onPress={() => {
                     navigation.navigate('FarmProducts', {
                       item: item
                     });
                 }}>
                   <Text style={styles.DataStyle}>Voir les produits</Text>
+                </TouchableOpacity>
+
+                {/* back to farmers list */}
+                <TouchableOpacity
+                  style={{ backgroundColor: '#FF0099'}}
+                  onPress={() => { navigation.navigate('FarmersList'); }}
+                >
+                  <Text style={styles.DataStyle}>Retourner sur la liste</Text>
                 </TouchableOpacity>
 
               </React.Fragment>

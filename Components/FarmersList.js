@@ -4,8 +4,6 @@ import {
   ScrollView,
   View,
   Text,
-  FlatList,
-  TextInput,
   Button,
   TouchableOpacity
 } from 'react-native';
@@ -24,7 +22,6 @@ export default class FarmersList extends React.Component {
     try {
       const farmers = await getDB();
       this.setState({ data: farmers.farmers });
-      console.log(this.state.data);
     } catch (e) {
       console.error(e);
     }
@@ -39,19 +36,18 @@ export default class FarmersList extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <View style={styles.FormContainer}>
-          <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> current farmers </Text>
-          
+        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> Les producteurs.trices </Text>
 
-          <FlatList
-            data={this.state.data}
-            keyExtractor={({ id }, index) => id.toString()}
-            renderItem={({ item }) => (
+        <ScrollView>
+        {
+          this.state.data.map((item) => (
+            <React.Fragment key={item.id.toString()}>
               <View style={{marginVertical: 5}}>
+                <Text style={styles.DataStyle}>Avatar</Text>
                 <TouchableOpacity
                   style={{ backgroundColor: '#0058b8'}}
                   onPress={() => {
-                    navigation.navigate('EditFarmer', {
+                    navigation.navigate('FarmDetails', {
                       item: item
                     });
                 }}>
@@ -60,10 +56,10 @@ export default class FarmersList extends React.Component {
                 <Text style={styles.DataStyle}>{item.email}</Text>
                 <Text style={styles.DataStyle}>{item.phone}</Text>
               </View>
-            )}
-          />
-        </View>
-
+            </React.Fragment>
+          ))
+        }
+        </ScrollView>
       </View>
     )
   }
@@ -76,7 +72,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: '#fff'
   },
-  FormContainer: {
+  CardContainer: {
     flex: 3,
     alignItems: 'center',
     width: '100%',
@@ -109,5 +105,5 @@ const styles = StyleSheet.create({
     color:'#000',
     textAlign:'center',
     textTransform: 'uppercase'
-  },
+  }
 });
