@@ -12,6 +12,5 @@ web-build/
 # macOS
 .DS_Store
 
-Components/EditFarmerComponent.js
 Components/FarmerDetails.js
 Components/InsertFarmer.js
