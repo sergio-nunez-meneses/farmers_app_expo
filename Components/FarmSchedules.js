@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ScrollView,
-  Alert,
   View,
-  TextInput,
   Text,
-  TouchableOpacity,
-  Button
+  TouchableOpacity
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,16 +23,23 @@ export default class EditFarmer extends React.Component {
     return (
       <View style={styles.MainContainer}>
         <ScrollView>
-          {/* farm schedules */}
-
-          {/* farm details */}
-          <TouchableOpacity
-            style={{ backgroundColor: '#FF0099'}}
-            onPress={() => { navigation.navigate('FarmDetails'); }}
-          >
-            <Text style={styles.DataStyle}>Retourner</Text>
-          </TouchableOpacity>
+          {
+            FarmSchedules.map((item) => (
+              <React.Fragment key={item.id.toString()}>
+                <Text style={styles.DataStyle}>Jour : {item.day}</Text>
+                <Text style={styles.DataStyle}>Activité: {item.activity}</Text>
+                <Text style={styles.DataStyle}>Horaires : de {item.start_time} à {item.end_time}</Text>
+              </React.Fragment>
+            ))
+          }
         </ScrollView>
+        {/* back to farm details */}
+        <TouchableOpacity
+          style={{ backgroundColor: '#FF0099'}}
+          onPress={() => { navigation.navigate('FarmDetails'); }}
+        >
+          <Text style={styles.DataStyle}>Retourner</Text>
+        </TouchableOpacity>
       </View>
     )
   }
