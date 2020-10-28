@@ -55,7 +55,7 @@ export default class Home extends React.Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        activeOpacity={0.4}
+                        // activeOpacity={0.9}
                         style={styles.TouchableOpacityStyle}
                         onPress={this.List}>
                         <Text style={styles.TextStyle}> LISTE </Text>
@@ -82,17 +82,19 @@ const styles = StyleSheet.create({
     TouchableOpacityStyle: {
         height: 180,
         width: 200,
-        backgroundColor: 'white',
+        backgroundColor: '#E8FCFD',
         borderRadius: 25,
-        opacity: 0.6,
+        opacity: 0.7,
         alignItems: 'center',
         marginBottom: 30
     },
     TextStyle: {
-        color: '#fff',
+        color: '#16BC81',
+        zIndex: 9,
         textTransform: 'uppercase',
         fontSize: 35,
         marginTop: 5,
+        
     },
     mainTitle: {
         fontSize: 25,

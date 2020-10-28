@@ -6,13 +6,20 @@ import {
     Text,
     View,
     TouchableOpacity,
-    SafeAreaView,
+    // SafeAreaView,
     Image,
     TouchableHighlight,
     TextInput,
-    Alert
+    Alert,
 } from 'react-native';
 import MapView from 'react-native-maps';
+import {
+    SafeAreaView,
+    SafeAreaProvider,
+    SafeAreaInsetsContext,
+    useSafeAreaInsets,
+    initialWindowMetrics,
+} from 'react-native-safe-area-context';
 
 // const image = { uri: 'https://i.stack.imgur.com/JwmQG.png' };
 
@@ -32,18 +39,32 @@ export default class Map extends React.Component {
         super(props);
     }
 
+    Home = () => {
+        this.props.navigation.navigate('Home');
+    };
+
     render() {
         const { navigation } = this.props;
         return (
             <SafeAreaView style={styles.main}>
                 <View style={styles.header}>
+                    <TouchableOpacity
+                        activeOpacity={0.4}
+                        style={styles.arrow}
+                        onPress={this.Home}>
+                        <Image
+                            style={styles.arrow}
+                            source={{
+                                uri: 'https://i.ibb.co/RjK7Mwy/previous.png',
+                            }}
+                        />
+                    </TouchableOpacity>
+
                     <Image
                         style={styles.imgIcon}
                         source={{ uri: 'https://i.ibb.co/d0TCxN9/shop-1.png' }}
                     />
-                    <View>
-                        <Text style={styles.Title}>CARTE</Text>
-                    </View>
+                    <Text style={styles.Title}>CARTE</Text>
                 </View>
 
                 <View style={styles.map}>
@@ -52,14 +73,13 @@ export default class Map extends React.Component {
                         provider="google"
                         // mapType='satellite'
                         initialRegion={Nevers}
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: '100%', height: '100%',  borderTopLeftRadius: 60,
+                        borderTopRightRadius: 60, }}
                     />
                 </View>
 
                 <View style={styles.footer}>
-                    <TouchableHighlight
-                        onPress={menuPress}
-                        style={styles.btn}>
+                    <TouchableHighlight onPress={menuPress} style={styles.btn}>
                         <Image
                             style={styles.logo}
                             source={{
@@ -77,16 +97,20 @@ export default class Map extends React.Component {
 
 const styles = StyleSheet.create({
     main: {
+        flex: 6,
         width: '100%',
         height: '100%',
+
         backgroundColor: '#08585E',
         alignItems: 'center',
     },
-    // ###############
+
     header: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '5%',
     },
     mainLogo: {
         width: 35,
@@ -95,7 +119,11 @@ const styles = StyleSheet.create({
     map: {
         height: '100%',
         width: '100%',
-        borderRadius: 200
+        marginTop:20,
+        borderWidth:1,
+        borderRadius:30,
+        overflow: 'hidden',
+        
     },
 
     footer: {
@@ -105,9 +133,6 @@ const styles = StyleSheet.create({
         marginTop: '170%',
         paddingLeft: '7%',
         paddingRight: '7%',
-        // flex: 1,
-        // justifyContent: 'flex-end',
-        // marginBottom: 36,
     },
     btn: {
         borderRadius: 100,
@@ -131,19 +156,23 @@ const styles = StyleSheet.create({
     imgIcon: {
         width: 40,
         height: 40,
-        display: 'flex',
-        marginLeft: '45%',
-        marginTop: 35,
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
+        marginTop: '5%',
+        marginRight: '3%',
+        marginLeft: '26%',
+        marginBottom: '5%',
     },
     Title: {
-        color: 'white',
-        marginTop: 10,
+        color: '#E8FCFD',
+        marginTop: '7%',
         marginRight: 'auto',
         marginBottom: 6,
-        marginLeft: 'auto',
+        // marginLeft: '6%',
         fontSize: 20,
+    },
+    arrow: {
+        width: 33,
+        height: 33,
+        marginTop: '7%',
+        marginLeft: '3%',
     },
 });
