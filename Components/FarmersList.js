@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
   Text,
   FlatList,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { getDB } from '../API/fetchDB'
+import EditFarmer from './EditFarmer'
 
 export default class FarmersList extends React.Component {
   constructor(props) {
@@ -39,6 +41,8 @@ export default class FarmersList extends React.Component {
       <View style={styles.MainContainer}>
         <View style={styles.FormContainer}>
           <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> current farmers </Text>
+          
+
           <FlatList
             data={this.state.data}
             keyExtractor={({ id }, index) => id.toString()}
@@ -48,28 +52,13 @@ export default class FarmersList extends React.Component {
                   style={{ backgroundColor: '#0058b8'}}
                   onPress={() => {
                     navigation.navigate('EditFarmer', {
-                      id: item.id,
-                      name: item.name,
-                      email: item.email,
-                      phone: item.phone,
-                      farms: item.Farms
+                      item: item
                     });
                 }}>
                   <Text style={styles.DataStyle}>{item.name}</Text>
                 </TouchableOpacity>
                 <Text style={styles.DataStyle}>{item.email}</Text>
                 <Text style={styles.DataStyle}>{item.phone}</Text>
-                <FlatList
-                  data={item.Farms}
-                  keyExtractor={({ id }, index) => id.toString()}
-                  renderItem={({ item }) => (
-                    <View style={{marginVertical: 5}}>
-                      <Text style={styles.DataStyle}>{item.name}</Text>
-                      <Text style={styles.DataStyle}>{item.address}</Text>
-                      <Text style={styles.DataStyle}>{item.FarmImages[0].name}</Text>
-                    </View>
-                  )}
-                />
               </View>
             )}
           />

@@ -13,4 +13,5 @@ web-build/
 .DS_Store
 
 Components/EditFarmer.js
+Components/EditFarmerComponent.js
 Components/InsertFarmer.js
