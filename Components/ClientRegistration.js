@@ -90,13 +90,7 @@ export default class ClientRegistration extends React.Component {
           >
             <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacityStyle}
-            onPress={() => { navigation.navigate('ClientContributions'); }}
-          >
-            <Text style={styles.TextStyle}>Contribuer</Text>
-          </TouchableOpacity>
+
         </View>
       </View>
     )
