@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, View, Button, TextInput, FlatList, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -6,30 +6,26 @@ export default class GeneralSearch extends React.Component {
     constructor(props){
       super(props)
       this.state = {
-         searchedText: "",
-
+        searchedText: "",
+        data: [],
         }
     }
   
-    _getFarms(){
-        const url = "https://local-farmers-api.herokuapp.com/API/search/farms?value="+  this.state.searchedText +"";
-        fetch(url).then(fetched => fetched.json().then(result => {
-            result.forEach(element => {
-                const elm = element;
-                console.log(elm.address);
-            });
+    _getFarms() {
+        const url = "https://local-farmers-api.herokuapp.com/API/search/farms?value=" + this.state.searchedText;
+        fetch(url).then(response => response.json().then(resultText => {
+          console.log(resultText);
         }))
         .catch(err => console.log(err))
-
-        console.log(this.state.searchedText);
+      
     }
 
     _loadData() {
         this._getFarms(this.state.searchText);
     }
 
-    _contentTxt(ctx){
-        this.state.searchedText = txt;
+    _contentTxt(txt){
+      this.setState({searchText: txt})
     }
 
  
@@ -51,6 +47,7 @@ export default class GeneralSearch extends React.Component {
               <TextInput style={stileGeneral.ricerca} onChangeText={(txt) => this._contentTxt(txt)} placeholder="cerca" onSubmitEditing={() => this._loadData()} onPress={this._getFarms()}/>
             </View>
 
+          {/* <Text>{this.data.name}</Text> */}
           </View>
           
         </SafeAreaView>

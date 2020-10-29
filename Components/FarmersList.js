@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(232, 252, 253, 0.9)'
   },
   TextStyle: {
-    color:'#E8FCFD',
+    color:'#16BC81',
     textAlign:'center',
     textTransform: 'uppercase'
   },
