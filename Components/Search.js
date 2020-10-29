@@ -42,20 +42,26 @@ export default class Search extends React.Component {
     this.selectedCategory = category;
   };
 
-  _loadFilms = async() => {
+  _getResults = async() => {
     if (this.searchedText.length > 0) {
       this.setState({ isLoading: true });
 
       const response = await fetch('https://local-farmers-api.herokuapp.com/API/search/' + this.selectedCategory + '?value=' + this.searchedText);
-      const result = await response.json();
+      const result = await response.text();
 
-      this.setState({ data: result });
+      if (result.charAt(0) === '<') {
+        console.error(result);
+        return;
+      }
+
+      console.log(JSON.parse(result));
+      this.setState({ data: JSON.parse(result) });
     }
   };
 
-  _searchFilms() {
+  _searchResults() {
     this.setState({ films: [] }, () => {
-      this._loadFilms();
+      this._getResults();
     });
   };
 
@@ -65,6 +71,7 @@ export default class Search extends React.Component {
     return (
       <View style={styles.MainContainer}>
         <RNPickerSelect
+          style={{height: 100}}
           onValueChange={(value) => {
             this._selectCategoryChanged(value);
           }}
@@ -80,9 +87,9 @@ export default class Search extends React.Component {
           style={styles.textinput}
           placeholder='Enter a film title'
           onChangeText={(text) => this._searchTextInputChanged(text)}
-          onSubmitEditing={() => this._searchFilms()}
+          onSubmitEditing={() => this._searchResults()}
         />
-        <Button title='Search' onPress={() => this._searchFilms()}/>
+        <Button title='Search' onPress={() => this._searchResults()}/>
 
         <ScrollView>
         {
@@ -99,8 +106,6 @@ export default class Search extends React.Component {
                 }}>
                   <Text style={styles.DataStyle}>{item.name}</Text>
                 </TouchableOpacity>
-                <Text style={styles.DataStyle}>{item.email}</Text>
-                <Text style={styles.DataStyle}>{item.phone}</Text>
               </View>
             </React.Fragment>
           ))

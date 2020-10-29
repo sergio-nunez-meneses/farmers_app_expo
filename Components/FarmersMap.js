@@ -28,7 +28,6 @@ const initialRegion = {
 }
 
 export default class FarmersMap extends React.Component {
-
   map = null;
 
   state = {
@@ -38,7 +37,7 @@ export default class FarmersMap extends React.Component {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     },
-    ready: true,
+    ready: false,
     data: [],
     currentPosition: []
   };
@@ -46,8 +45,8 @@ export default class FarmersMap extends React.Component {
   setRegion(region) {
     if (this.state.ready) {
       setTimeout(() => {
-        this.mapView && this.mapView.animateToRegion(this.state.region, 5000)
-      }, 1000)
+        this.mapView && this.mapView.animateToRegion(this.state.region, 100);
+      }, 10)
     }
     this.setState({ region });
   }
@@ -87,24 +86,23 @@ export default class FarmersMap extends React.Component {
           // TODO: better design
           switch (error.code) {
             case 1:
-              if (Platform.OS === "ios") {
-                Alert.alert("", "Para ubicar tu locación habilita permiso para la aplicación en Ajustes - Privacidad - Localización");
+              if (Platform.OS === 'ios') {
+                Alert.alert('', 'Para ubicar tu locación habilita permiso para la aplicación en Ajustes - Privacidad - Localización');
               } else {
-                Alert.alert("", "Para ubicar tu locación habilita permiso para la aplicación en Ajustes - Apps - ExampleApp - Localización");
+                Alert.alert('', 'Para ubicar tu locación habilita permiso para la aplicación en Ajustes - Apps - ExampleApp - Localización');
               }
               break;
             default:
-              Alert.alert("", "Error al detectar tu locación");
+              Alert.alert('', 'Error al detectar tu locación');
           }
         }
       );
     } catch(e) {
-      alert(e.message || "");
+      alert(e.message || '');
     }
   };
 
   calculateDistance = async (id, latitude, longitude) => {
-
     try {
       let dis = geolib.getDistance(this.state.currentPosition,
         {
@@ -166,9 +164,9 @@ export default class FarmersMap extends React.Component {
       <MapView
         showsPointsOfInterest={true}
         provider="google"
+        initialRegion={this.state.region}
         showsUserLocation
         ref={ map => { this.map = map }}
-        initialRegion={this.state.region}
         renderMarker={renderMarker}
         onMapReady={this.onMapReady}
         showsMyLocationButton={true}

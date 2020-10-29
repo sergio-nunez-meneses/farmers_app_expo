@@ -7,6 +7,10 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import MapView, {
+  Marker,
+  AnimatedRegion
+} from 'react-native-maps';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -15,11 +19,32 @@ export default class EditFarmer extends React.Component {
     super(props);
   };
 
+  map = null;
+
+  state = {
+    region: {
+      latitude: 46.987471,
+      longitude: 3.150616,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    }
+  };
+
   render() {
-    const { route, navigation } = this.props;
+    const { region } = this.state;
+    const { children, renderMarker, markers, route, navigation } = this.props;
     const { item } = route.params;
     const { id, name, email, phone, Farms } = route.params.item;
-    console.log(Farms);
+    console.log(Farms[0].location);
+
+    if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
+      this.setState({ ...this.state, region: {
+        latitude: parseFloat(Farms[0].location.split(',')[0]),
+        longitude: parseFloat(Farms[0].location.split(',')[1]),
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }})
+    }
 
     return (
       <View style={styles.MainContainer}>
@@ -33,16 +58,37 @@ export default class EditFarmer extends React.Component {
                 <Text style={styles.DataStyle}>{item.city}</Text>
                 <Text style={styles.DataStyle}>{item.website}</Text>
 
-                {/* farm location */}
-                <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
-                  onPress={() => {
-                    navigation.navigate('FarmLocation', {
-                      item: item
-                    });
-                }}>
-                  <Text style={styles.DataStyle}>Regarder sur la carte</Text>
-                </TouchableOpacity>
+                <View style={{height: '100%'}}>
+                  <MapView
+                    showsPointsOfInterest={true}
+                    provider="google"
+                    initialRegion={this.state.region}
+                    showsUserLocation
+                    ref={ map => { this.map = map }}
+                    renderMarker={renderMarker}
+                    // onMapReady={this.onMapReady}
+                    showsMyLocationButton={true}
+                    style={StyleSheet.absoluteFill}
+                    textStyle={{ color: '#bc8b00' }}
+                    containerStyle={{
+                      flex: 2,
+                      backgroundColor: 'white',
+                      borderColor: '#BC8B00'
+                    }}>
+
+                    <Marker
+                      key={item.id}
+                      coordinate={{
+                        latitude: parseFloat(item.location.split(',')[0]),
+                        longitude: parseFloat(item.location.split(',')[1])
+                      }}
+                      title={item.name}
+                      description={item.address}
+                    >
+                    </Marker>
+                    {children && children || null}
+                  </MapView>
+                </View>
 
                 {/* farm schedules */}
                 <TouchableOpacity

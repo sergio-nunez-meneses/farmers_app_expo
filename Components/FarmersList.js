@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   StyleSheet,
+  Image,
   ScrollView,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 import { getDB } from '../API/fetchDB'
 
@@ -34,17 +36,19 @@ export default class FarmersList extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-
         <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> les producteurs.trices </Text>
 
-        <ScrollView>
+        <ScrollView vertical={true}>
         {
           this.state.data.map((item) => (
             <React.Fragment key={item.id.toString()}>
-              <View style={{marginVertical: 5}}>
-                <Text style={styles.DataStyle}>Avatar</Text>
+              <View style={{marginVertical: 5, padding: 0, borderWidth: 1, borderColor: '#ddd'}}>
+                <Image
+                  style={styles.AvatarPhoto}
+                  source={{uri: 'https://img.pngio.com/account-avatar-circle-people-profile-user-icon-circle-people-png-512_512.png'}}
+                />
                 <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
+                  style={{ backgroundColor: '#52AD9C'}}
                   onPress={() => {
                     navigation.navigate('FarmDetails', {
                       item: item
@@ -52,8 +56,18 @@ export default class FarmersList extends React.Component {
                 }}>
                   <Text style={styles.DataStyle}>{item.name}</Text>
                 </TouchableOpacity>
-                <Text style={styles.DataStyle}>{item.email}</Text>
-                <Text style={styles.DataStyle}>{item.phone}</Text>
+                <Text
+                  style={styles.DataStyle}
+                  onPress={() => Linking.openURL('mailto:support@example.com')}
+                >
+                  {item.email}
+                </Text>
+                <Text
+                  style={styles.DataStyle}
+                  onPress={() => Linking.openURL(`tel:${item.phone}`)}
+                >
+                  {item.phone}
+                </Text>
               </View>
             </React.Fragment>
           ))
@@ -62,12 +76,13 @@ export default class FarmersList extends React.Component {
 
         {/* go to client registration */}
         <View style={styles.TouchableOpacityContainer}>
+          <Text style={{marginBottom: 5, textAlign:'center', textTransform: 'uppercase'}}>Notre liste est incomplète ?</Text>
           <TouchableOpacity
             activeOpacity = { .4 }
             style={styles.TouchableOpacityStyle}
             onPress={() => { navigation.navigate('ClientRegistration'); }}
           >
-            <Text style={styles.TextStyle}>Contibuer à nos registres</Text>
+            <Text style={styles.TextStyle}>Contibuer à nos registres!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -82,11 +97,17 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: '#fff'
   },
+  AvatarPhoto: {
+    width: '100%',
+    height: 180,
+    margin: 1,
+    backgroundColor: 'transparent'
+  },
   TouchableOpacityContainer: {
     flex: 2,
     alignItems: 'center',
     width: '100%',
-    marginTop: -80,
+    marginTop: '-45%',
     padding: 10,
     backgroundColor: '#fff'
   },
@@ -96,7 +117,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     width: '90%',
-    backgroundColor: '#00BCD4'
+    backgroundColor: '#6CC551'
   },
   TextStyle: {
     color:'#fff',
@@ -104,7 +125,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   DataStyle: {
-    borderWidth: 1,
+    borderTopWidth: 1,
+    // borderBottomWidth: 1,
     borderColor: '#ddd',
     paddingHorizontal: 80,
     paddingVertical: 5,
