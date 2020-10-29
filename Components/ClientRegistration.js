@@ -7,6 +7,13 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import {
+    SafeAreaProvider,
+    SafeAreaInsetsContext,
+    SafeAreaView,
+    useSafeAreaInsets,
+    initialWindowMetrics,
+} from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -46,7 +53,7 @@ export default class ClientRegistration extends React.Component {
     const { route, navigation } = this.props;
 
     return (
-      <View style={styles.MainContainer}>
+      <SafeAreaView style={styles.MainContainer}>
         <View style={styles.FormContainer}>
           <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
           <TextInput
@@ -92,7 +99,7 @@ export default class ClientRegistration extends React.Component {
           </TouchableOpacity>
 
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 }

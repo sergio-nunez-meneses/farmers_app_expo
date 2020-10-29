@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Components/Home';
 import Map from '../Components/Map';
 import List from '../Components/List';
+import ClientRegistration from '../Components/ClientRegistration';
+import ClientContributions from '../Components/ClientContributions';
+import FarmersList from '../Components/FarmersList';
 
 export default class Navigation extends React.Component {
     Stack = createStackNavigator();
@@ -68,6 +71,42 @@ export default class Navigation extends React.Component {
                             },
                         }}
                     />
+
+                    <this.Stack.Screen
+                        name="ClientRegistration"
+                        component={ClientRegistration}
+                        options={{
+                            title: 'ClientRegistration',
+                            headerStyle: {
+                                backgroundColor: '#08585E',
+                                elevation: 0,
+                            },
+
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                            },
+                        }}
+                    />
+
+                    <this.Stack.Screen
+                        name="FarmersList"
+                        component={FarmersList}
+                        options={{
+                            title: 'FarmersList',
+                            headerStyle: {
+                                backgroundColor: '#08585E',
+                                elevation: 0,
+                            },
+
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                            },
+                        }}
+                    />
+
+
                 </this.Stack.Navigator>
             </NavigationContainer>
         );

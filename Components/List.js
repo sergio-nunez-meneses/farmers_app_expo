@@ -1,48 +1,122 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  TouchableOpacity,
 
-export default class Infos extends React.Component {
-    constructor(props) {
-        super(props);
+} from 'react-native';
+import {
+    SafeAreaProvider,
+    SafeAreaInsetsContext,
+    SafeAreaView,
+    useSafeAreaInsets,
+    initialWindowMetrics,
+} from 'react-native-safe-area-context';
+import { getDB } from '../API/fetchDB'
+
+export default class FarmersList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  };
+
+  getFarmers = async() => {
+    try {
+      const farmers = await getDB();
+      this.setState({ data: farmers.farmers });
+    } catch (e) {
+      console.error(e);
     }
+  };
 
-    render() {
-        const { navigation } = this.props;
-        return (
-            <View style={styles.container}>
-                <Text></Text>
+  componentDidMount = () => {
+    this.getFarmers();
+  };
+
+  render() {
+    const { navigation } = this.props
+
+    return (
+      <SafeAreaView style={styles.MainContainer}>
+        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase', color: '#E8FCFD'}}>Fermes</Text>
+
+        <ScrollView>
+        {
+          this.state.data.map((item) => (
+            <React.Fragment key={item.id.toString()}>
+              <View style={{marginVertical: 5}}>
+                <Text style={styles.DataStyle}>Avatar</Text>
                 <TouchableOpacity
-                    activeOpacity={0.4}
-                    style={styles.TouchableOpacityStyle}
-                    onPress={() => {
-                        navigation.navigate('Home');
-                    }}>
-                    <Text style={styles.TextStyle}> Home </Text>
+                  style={{ backgroundColor: '#16BC81'}}
+                  onPress={() => {
+                    navigation.navigate('FarmDetails', {
+                      item: item
+                    });
+                }}>
+                  <Text style={styles.DataStyle}>{item.name}</Text>
                 </TouchableOpacity>
-            </View>
-        );
-    }
+                <Text style={styles.DataStyle}>{item.email}</Text>
+                <Text style={styles.DataStyle}>{item.phone}</Text>
+              </View>
+            </React.Fragment>
+          ))
+        }
+        </ScrollView>
+        <View style={styles.TouchableOpacityContainer}>
+          <TouchableOpacity
+            activeOpacity = { .4 }
+            style={styles.TouchableOpacityStyle}
+            onPress={() => { navigation.navigate('ClientRegistration'); }}
+          >
+            <Text style={styles.TextStyle}>Contibuer à nos registres</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#08585E',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    TouchableOpacityStyle: {
-        paddingTop: 20,
-        paddingBottom: 20,
-        borderRadius: 5,
-        marginBottom: 10,
-        width: '50%',
-        backgroundColor: '#08585E',
-    },
-    TextStyle: {
-        color: '#fff',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-    },
+  MainContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 10,
+    backgroundColor: '#08585E'
+  },
+  CardContainer: {
+    flex: 3,
+    alignItems: 'center',
+    width: '100%',
+  },
+  TouchableOpacityContainer: {
+    flex: 2,
+    alignItems: 'center',
+    width: '100%',
+  },
+  TouchableOpacityStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: '90%',
+    backgroundColor: 'rgba(232, 252, 253, 0.9)'
+  },
+  TextStyle: {
+    color:'#16BC81',
+    textAlign:'center',
+    textTransform: 'uppercase'
+  },
+  DataStyle: {
+    borderWidth: 0.5,
+    borderColor: '#16BC81',
+    paddingHorizontal: 80,
+    paddingVertical: 5,
+    color:'#E8FCFD',
+    textAlign:'center',
+    textTransform: 'uppercase'
+  }
 });
