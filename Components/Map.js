@@ -28,6 +28,7 @@ import {
 import * as geolib from 'geolib';
 import { getDistance, getPreciseDistance } from 'geolib';
 
+
 // const image = { uri: 'https://i.stack.imgur.com/JwmQG.png' };
 
 const menuPress = () => {
