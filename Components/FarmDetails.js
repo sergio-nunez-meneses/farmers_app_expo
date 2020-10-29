@@ -19,6 +19,7 @@ export default class EditFarmer extends React.Component {
     const { route, navigation } = this.props;
     const { item } = route.params;
     const { id, name, email, phone, Farms } = route.params.item;
+    console.log(Farms);
 
     return (
       <View style={styles.MainContainer}>
@@ -30,6 +31,7 @@ export default class EditFarmer extends React.Component {
                 <Text style={styles.DataStyle}>Photo: {item.FarmImages[0].name}</Text>
                 <Text style={styles.DataStyle}>{item.address}, {item.postal_code}</Text>
                 <Text style={styles.DataStyle}>{item.city}</Text>
+                <Text style={styles.DataStyle}>{item.website}</Text>
 
                 {/* farm location */}
                 <TouchableOpacity
@@ -66,10 +68,10 @@ export default class EditFarmer extends React.Component {
 
                 {/* back to farmers list */}
                 <TouchableOpacity
-                  style={{ backgroundColor: '#FF0099'}}
+                  style={{ backgroundColor: '#FF0999'}}
                   onPress={() => { navigation.navigate('FarmersList'); }}
                 >
-                  <Text style={styles.DataStyle}>Retourner sur la liste</Text>
+                  <Text style={styles.DataStyle}>Retourner</Text>
                 </TouchableOpacity>
 
               </React.Fragment>
@@ -83,15 +85,9 @@ export default class EditFarmer extends React.Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex:1,
+    flex: 1,
     alignItems: 'center',
     paddingTop: 10,
-    backgroundColor: '#fff'
-  },
-  FormContainer: {
-    flex: 3,
-    alignItems: 'center',
-    width: '100%',
     backgroundColor: '#fff'
   },
   TextInputStyleClass: {
