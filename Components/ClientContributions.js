@@ -10,18 +10,24 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-export default class ClientRegistration extends React.Component {
+export default class ClientContributions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      TextInput_name: '',
-      TextInput_email: '',
-      TextInput_phone: ''
+      TextInput_farmerName: '',
+      TextInput_farmerEmail: '',
+      TextInput_farmerPhone: '',
+      TextInput_farmName: '',
+      TextInput_farmAddress: '',
+      TextInput_farmCity: '',
+      TextInput_farmPostalCode: ''
     }
   }
 
-  registerClient = () => {
-    fetch('https://local-farmers-api.herokuapp.com/API/clients/insertClient',
+  registerContributions = () => {
+    const { route, navigation } = this.props;
+
+    fetch('https://local-farmers-api.herokuapp.com/API/clients/insertContributions',
     {
       method: 'POST',
       headers: {
@@ -29,14 +35,18 @@ export default class ClientRegistration extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: this.state.TextInput_name,
-        email: this.state.TextInput_email,
-        phone: this.state.TextInput_phone
+        farmerName: this.state.TextInput_farmerName,
+        farmerEmail: this.state.TextInput_farmerEmail,
+        farmerPhone: this.state.TextInput_farmerPhone,
+        farmName: this.state.TextInput_farmName,
+        farmAddress: this.state.TextInput_farmAddress,
+        farmCity: this.state.TextInput_farmCity,
+        farmPostalCode: this.state.TextInput_farmPostalCode,
       })
     })
       .then((response) => response.json())
       .then((responseJson) => { console.log(responseJson); })
-      .then(() => { this.props.navigation.navigate('ClientContributions'); })
+      .then(() => { this.props.navigation.navigate('FarmersList'); })
       .catch((error) => {
         console.error(error);
       });
@@ -48,11 +58,12 @@ export default class ClientRegistration extends React.Component {
     return (
       <View style={styles.MainContainer}>
         <View style={styles.FormContainer}>
-          <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
+          <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> insert farmer </Text>
+
           <TextInput
-            placeholder="votre prénom et nom"
+            placeholder="nom du producteur"
             onChangeText={ TextInputValue => this.setState({
-              TextInput_name: TextInputValue
+              TextInput_farmerName: TextInputValue
             }) }
             underlineColorAndroid='transparent'
             style={styles.TextInputStyleClass}
@@ -60,7 +71,7 @@ export default class ClientRegistration extends React.Component {
           <TextInput
             placeholder="email"
             onChangeText={ TextInputValue => this.setState({
-              TextInput_email: TextInputValue
+              TextInput_farmerEmail: TextInputValue
             }) }
             underlineColorAndroid='transparent'
             style={styles.TextInputStyleClass}
@@ -68,15 +79,46 @@ export default class ClientRegistration extends React.Component {
           <TextInput
             placeholder="portable"
             onChangeText={ TextInputValue => this.setState({
-              TextInput_phone: TextInputValue
+              TextInput_farmerPhone: TextInputValue
+            }) }
+            underlineColorAndroid='transparent'
+            style={styles.TextInputStyleClass}
+          />
+          <TextInput
+            placeholder="nom de la ferme"
+            onChangeText={ TextInputValue => this.setState({
+              TextInput_farmName: TextInputValue
+            }) }
+            underlineColorAndroid='transparent'
+            style={styles.TextInputStyleClass}
+          />
+          <TextInput
+            placeholder="adress"
+            onChangeText={ TextInputValue => this.setState({
+              TextInput_farmAddress: TextInputValue
+            }) }
+            underlineColorAndroid='transparent'
+            style={styles.TextInputStyleClass}
+          />
+          <TextInput
+            placeholder="ville"
+            onChangeText={ TextInputValue => this.setState({
+              TextInput_farmCity: TextInputValue
+            }) }
+            underlineColorAndroid='transparent'
+            style={styles.TextInputStyleClass}
+          />
+          <TextInput
+            placeholder="code postal"
+            onChangeText={ TextInputValue => this.setState({
+              TextInput_farmPostalCode: TextInputValue
             }) }
             underlineColorAndroid='transparent'
             style={styles.TextInputStyleClass}
           />
           <TouchableOpacity
             activeOpacity = { .4 }
-            style={styles.TouchableOpacitySubmitStyle}
-            onPress={this.registerClient}
+            style={styles.TouchableOpacitySubmitStyle} onPress={this.registerContributions}
           >
             <Text style={styles.TextStyle}> envoyer </Text>
           </TouchableOpacity>
@@ -90,14 +132,8 @@ export default class ClientRegistration extends React.Component {
           >
             <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacityStyle}
-            onPress={() => { navigation.navigate('ClientContributions'); }}
-          >
-            <Text style={styles.TextStyle}>Contribuer</Text>
-          </TouchableOpacity>
         </View>
+
       </View>
     )
   }
