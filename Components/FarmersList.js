@@ -34,7 +34,8 @@ export default class FarmersList extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> Les producteurs.trices </Text>
+
+        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> les producteurs.trices </Text>
 
         <ScrollView>
         {
@@ -58,6 +59,8 @@ export default class FarmersList extends React.Component {
           ))
         }
         </ScrollView>
+
+        {/* go to client registration */}
         <View style={styles.TouchableOpacityContainer}>
           <TouchableOpacity
             activeOpacity = { .4 }

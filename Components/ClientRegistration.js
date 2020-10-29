@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
-  Alert,
   TextInput,
   Text,
   TouchableOpacity,
@@ -47,51 +47,53 @@ export default class ClientRegistration extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <View style={styles.FormContainer}>
-          <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
-          <TextInput
-            placeholder="votre prénom et nom"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_name: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="email"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_email: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="portable"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_phone: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacitySubmitStyle}
-            onPress={this.registerClient}
-          >
-            <Text style={styles.TextStyle}> envoyer </Text>
-          </TouchableOpacity>
-        </View>
+        <ScrollView>
+          <View style={styles.FormContainer}>
+            <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
+            <TextInput
+              placeholder="votre prénom et nom"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_name: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="email"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_email: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="portable"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_phone: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TouchableOpacity
+              activeOpacity = { .4 }
+              style={styles.TouchableOpacitySubmitStyle}
+              onPress={this.registerClient}
+            >
+              <Text style={styles.TextStyle}> envoyer </Text>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.TouchableOpacityContainer}>
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacityStyle}
-            onPress={() => { navigation.navigate('FarmersList'); }}
-          >
-            <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
-          </TouchableOpacity>
+          <View style={styles.TouchableOpacityContainer}>
+            <TouchableOpacity
+              activeOpacity = { .4 }
+              style={styles.TouchableOpacityStyle}
+              onPress={() => { navigation.navigate('FarmersList'); }}
+            >
+              <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
+            </TouchableOpacity>
 
-        </View>
+          </View>
+        </ScrollView>
       </View>
     )
   }

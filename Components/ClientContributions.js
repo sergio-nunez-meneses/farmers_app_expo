@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
-  Alert,
   TextInput,
   Text,
   TouchableOpacity,
@@ -57,83 +57,84 @@ export default class ClientContributions extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <View style={styles.FormContainer}>
-          <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> insert farmer </Text>
+        <ScrollView>
+          <View style={styles.FormContainer}>
+            <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> insert farmer </Text>
 
-          <TextInput
-            placeholder="nom du producteur"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmerName: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="email"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmerEmail: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="portable"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmerPhone: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="nom de la ferme"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmName: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="adress"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmAddress: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="ville"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmCity: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TextInput
-            placeholder="code postal"
-            onChangeText={ TextInputValue => this.setState({
-              TextInput_farmPostalCode: TextInputValue
-            }) }
-            underlineColorAndroid='transparent'
-            style={styles.TextInputStyleClass}
-          />
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacitySubmitStyle} onPress={this.registerContributions}
-          >
-            <Text style={styles.TextStyle}> envoyer </Text>
-          </TouchableOpacity>
-        </View>
+            <TextInput
+              placeholder="nom du producteur"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmerName: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="email"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmerEmail: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="portable"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmerPhone: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="nom de la ferme"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmName: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="adress"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmAddress: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="ville"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmCity: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TextInput
+              placeholder="code postal"
+              onChangeText={ TextInputValue => this.setState({
+                TextInput_farmPostalCode: TextInputValue
+              }) }
+              underlineColorAndroid='transparent'
+              style={styles.TextInputStyleClass}
+            />
+            <TouchableOpacity
+              activeOpacity = { .4 }
+              style={styles.TouchableOpacitySubmitStyle} onPress={this.registerContributions}
+            >
+              <Text style={styles.TextStyle}> envoyer </Text>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.TouchableOpacityContainer}>
-          <TouchableOpacity
-            activeOpacity = { .4 }
-            style={styles.TouchableOpacityStyle}
-            onPress={() => { navigation.navigate('FarmersList'); }}
-          >
-            <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
-          </TouchableOpacity>
-        </View>
-
+          <View style={styles.TouchableOpacityContainer}>
+            <TouchableOpacity
+              activeOpacity = { .4 }
+              style={styles.TouchableOpacityStyle}
+              onPress={() => { navigation.navigate('FarmersList'); }}
+            >
+              <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     )
   }
