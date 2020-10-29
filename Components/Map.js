@@ -27,11 +27,12 @@ import {
 } from 'react-native-safe-area-context';
 import * as geolib from 'geolib';
 import { getDistance, getPreciseDistance } from 'geolib';
+import { RightBar } from '../Navigations/Navigations'
 
 // const image = { uri: 'https://i.stack.imgur.com/JwmQG.png' };
 
 const menuPress = () => {
-    Alert.alert('sheet');
+    // Alert.alert('sheet');
 };
 
 const LATITUDE_DELTA = 0.01;
