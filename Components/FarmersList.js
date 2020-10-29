@@ -36,25 +36,32 @@ export default class FarmersList extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}> les producteurs.trices </Text>
-
         <ScrollView vertical={true}>
         {
           this.state.data.map((item) => (
             <React.Fragment key={item.id.toString()}>
-              <View style={{marginVertical: 5, padding: 0, borderWidth: 1, borderColor: '#ddd'}}>
+              <View style={{flex: 10, marginVertical: 5, padding: 0, borderWidth: 1, borderColor: '#ddd'}}>
                 <Image
                   style={styles.AvatarPhoto}
                   source={{uri: 'https://img.pngio.com/account-avatar-circle-people-profile-user-icon-circle-people-png-512_512.png'}}
                 />
                 <TouchableOpacity
-                  style={{ backgroundColor: '#52AD9C'}}
+                  style={{
+                    backgroundColor: '#52AD9C',
+                    color: '#fff'
+                  }}
                   onPress={() => {
                     navigation.navigate('FarmDetails', {
                       item: item
                     });
                 }}>
-                  <Text style={styles.DataStyle}>{item.name}</Text>
+                  <Text style={{
+                    paddingHorizontal: 80,
+                    paddingVertical: 5,
+                    color:'#fff',
+                    textAlign:'center',
+                    textTransform: 'uppercase'
+                  }}>{item.name}</Text>
                 </TouchableOpacity>
                 <Text
                   style={styles.DataStyle}
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
   },
   AvatarPhoto: {
     width: '100%',
-    height: 180,
+    height: 100,
     margin: 1,
     backgroundColor: 'transparent'
   },
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
     flex: 2,
     alignItems: 'center',
     width: '100%',
-    marginTop: '-45%',
+    marginTop: '-36%',
     padding: 10,
     backgroundColor: '#fff'
   },
@@ -125,9 +132,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   DataStyle: {
-    borderTopWidth: 1,
-    // borderBottomWidth: 1,
-    borderColor: '#ddd',
     paddingHorizontal: 80,
     paddingVertical: 5,
     color:'#000',

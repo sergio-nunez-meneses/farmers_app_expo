@@ -1,10 +1,11 @@
 import React from 'react';
 import {
+  StyleSheet,
   Alert,
   Platform,
   View,
   Text,
-  StyleSheet
+  TouchableOpacity
 } from 'react-native';
 import MapView, {
   Marker,
@@ -62,23 +63,23 @@ export default class FarmersMap extends React.Component {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           // console.log(position.coords);
-          // if (geolib.isValidCoordinate(position.coords)) { const region... }
-
-          const region = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA,
-          };
-
-          this.setRegion(region);
-          this.setState({
-            currentPosition: {
+          if (geolib.isValidCoordinate(position.coords)) {
+            const region = {
               latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-            },
-          });
-          // console.log('My current position:', this.state.currentPosition);
+              longitude: position.coords.longitude,
+              latitudeDelta: LATITUDE_DELTA,
+              longitudeDelta: LONGITUDE_DELTA,
+            };
+
+            this.setRegion(region);
+            this.setState({
+              currentPosition: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+              },
+            });
+            // console.log('My current position:', this.state.currentPosition);
+          }
         },
         (error) => {
           console.error(error);
@@ -110,7 +111,7 @@ export default class FarmersMap extends React.Component {
           longitude: longitude,
         }
       );
-      Alert.alert('', `Vous êtes actuellement à ${dis / 1000} KM`);
+      Alert.alert('', `Vous êtes actuellement à ${dis / 1000}km de cette ferme`);
       // console.log(`Vous êtes actuellement à ${dis} mettres (${dis / 1000} KM)`);
     } catch (error) {
       console.error(error);
@@ -161,26 +162,61 @@ export default class FarmersMap extends React.Component {
     const { children, renderMarker, markers } = this.props;
 
     return (
-      <MapView
-        showsPointsOfInterest={true}
-        provider="google"
-        initialRegion={this.state.region}
-        showsUserLocation
-        ref={ map => { this.map = map }}
-        renderMarker={renderMarker}
-        onMapReady={this.onMapReady}
-        showsMyLocationButton={true}
-        style={StyleSheet.absoluteFill}
-        textStyle={{ color: '#bc8b00' }}
-        containerStyle={{
-          flex: 2,
-          backgroundColor: 'white',
-          borderColor: '#BC8B00'
-        }}>
+      <React.Fragment>
+        <View style={{flex: 5}}>
+          <MapView
+            showsPointsOfInterest={true}
+            provider="google"
+            initialRegion={this.state.region}
+            showsUserLocation
+            ref={ map => { this.map = map }}
+            renderMarker={renderMarker}
+            onMapReady={this.onMapReady}
+            showsMyLocationButton={true}
+            style={StyleSheet.absoluteFill}
+            textStyle={{ color: '#bc8b00' }}
+            containerStyle={{
+              backgroundColor: '#6CC551',
+              borderColor: '#BC8B00'
+            }}>
 
-        {this.farmerMarkers()}
-        {children && children || null}
-      </MapView>
+            {this.farmerMarkers()}
+            {children && children || null}
+          </MapView>
+        </View>
+        <View style={styles.TouchableOpacityContainer}>
+          <TouchableOpacity
+            activeOpacity = { .4 }
+            style={styles.TouchableOpacityStyle}
+            onPress={() => { navigation.navigate('Home'); }}
+          >
+            <Text style={styles.TextStyle}>Retourner à l'acceuil</Text>
+          </TouchableOpacity>
+        </View>
+      </React.Fragment>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  TouchableOpacityContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    backgroundColor: '#fff'
+  },
+  TouchableOpacityStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    width: '90%',
+    backgroundColor: '#6CC551'
+  },
+  TextStyle: {
+    color:'#fff',
+    textAlign:'center',
+    textTransform: 'uppercase'
+  }
+});

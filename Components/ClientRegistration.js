@@ -49,7 +49,6 @@ export default class ClientRegistration extends React.Component {
       <View style={styles.MainContainer}>
         <ScrollView>
           <View style={styles.FormContainer}>
-            <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
             <TextInput
               placeholder="votre prénom et nom"
               onChangeText={ TextInputValue => this.setState({
@@ -87,9 +86,9 @@ export default class ClientRegistration extends React.Component {
             <TouchableOpacity
               activeOpacity = { .4 }
               style={styles.TouchableOpacityStyle}
-              onPress={() => { navigation.navigate('FarmersList'); }}
+              onPress={() => { navigation.navigate('Home'); }}
             >
-              <Text style={styles.TextStyle}>Retourner à liste des producteurs.trices</Text>
+              <Text style={styles.TextStyle}>Retourner à l'acceuil</Text>
             </TouchableOpacity>
 
           </View>
@@ -101,8 +100,7 @@ export default class ClientRegistration extends React.Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex:1,
-    alignItems: 'center',
+    flex: 10,
     paddingTop: 10,
     backgroundColor: '#fff'
   },
@@ -114,11 +112,11 @@ const styles = StyleSheet.create({
   },
   TextInputStyleClass: {
     textAlign: 'center',
-    width: '90%',
+    width: '95%',
     marginBottom: 7,
     height: 40,
     borderWidth: 1,
-    borderColor: '#FF5722',
+    borderColor: '#47624F',
     borderRadius: 5 ,
   },
   TouchableOpacitySubmitStyle: {
@@ -126,8 +124,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     borderRadius: 5,
     marginBottom: 10,
-    width: '90%',
-    backgroundColor: '#FF0000'
+    width: '95%',
+    backgroundColor: '#52AD9C'
   },
   TouchableOpacityContainer: {
     flex: 1,
@@ -139,10 +137,11 @@ const styles = StyleSheet.create({
   TouchableOpacityStyle: {
     paddingTop: 20,
     paddingBottom: 20,
+    paddingHorizontal: 10,
     borderRadius: 5,
     marginBottom: 10,
-    width: '90%',
-    backgroundColor: '#00BCD4'
+    width: '95%',
+    backgroundColor: '#6CC551'
   },
   TextStyle: {
     color:'#fff',

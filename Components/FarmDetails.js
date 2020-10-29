@@ -35,16 +35,16 @@ export default class EditFarmer extends React.Component {
     const { children, renderMarker, markers, route, navigation } = this.props;
     const { item } = route.params;
     const { id, name, email, phone, Farms } = route.params.item;
-    console.log(Farms[0].location);
+    console.log(item, Farms);
 
-    if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
-      this.setState({ ...this.state, region: {
-        latitude: parseFloat(Farms[0].location.split(',')[0]),
-        longitude: parseFloat(Farms[0].location.split(',')[1]),
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
-      }})
-    }
+    // if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
+    //   this.setState({ ...this.state, region: {
+    //     latitude: parseFloat(Farms[0].location.split(',')[0]),
+    //     longitude: parseFloat(Farms[0].location.split(',')[1]),
+    //     latitudeDelta: 0.0922,
+    //     longitudeDelta: 0.0421
+    //   }})
+    // }
 
     return (
       <View style={styles.MainContainer}>

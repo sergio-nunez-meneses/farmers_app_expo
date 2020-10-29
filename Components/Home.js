@@ -20,7 +20,14 @@ export default class Home extends React.Component {
       <View style={styles.MainContainer}>
         <TouchableOpacity
           activeOpacity = { .4 }
-          style={styles.TouchableOpacityStyle}
+          style={{
+            paddingTop: 20,
+            paddingBottom: 20,
+            borderRadius: 5,
+            marginBottom: 10,
+            width: '50%',
+            backgroundColor: '#47624F',
+          }}
           onPress={() => { navigation.navigate('FarmersMap'); }}
         >
           <Text style={styles.TextStyle}> carte des producteurs.trices </Text>
@@ -28,7 +35,14 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
           activeOpacity = { .4 }
-          style={styles.TouchableOpacityStyle}
+          style={{
+            paddingTop: 20,
+            paddingBottom: 20,
+            borderRadius: 5,
+            marginBottom: 10,
+            width: '50%',
+            backgroundColor: '#52AD9C',
+          }}
           onPress={() => { navigation.navigate('FarmersList'); }}
         >
           <Text style={styles.TextStyle}> liste des producteurs.trices </Text>
@@ -36,7 +50,14 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
           activeOpacity = { .4 }
-          style={styles.TouchableOpacityStyle}
+          style={{
+            paddingTop: 20,
+            paddingBottom: 20,
+            borderRadius: 5,
+            marginBottom: 10,
+            width: '50%',
+            backgroundColor: '#00BCD4',
+          }}
           onPress={() => { navigation.navigate('Search'); }}
         >
           <Text style={styles.TextStyle}> rechercher </Text>
@@ -44,7 +65,14 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
           activeOpacity = { .4 }
-          style={styles.TouchableOpacityStyle}
+          style={{
+            paddingTop: 20,
+            paddingBottom: 20,
+            borderRadius: 5,
+            marginBottom: 10,
+            width: '50%',
+            backgroundColor: '#6CC551',
+          }}
           onPress={() => { navigation.navigate('ClientRegistration'); }}
         >
           <Text style={styles.TextStyle}> contribuer !</Text>

@@ -54,7 +54,7 @@ export default class Search extends React.Component {
         return;
       }
 
-      console.log(JSON.parse(result));
+      console.log(JSON.parse(result).length);
       this.setState({ data: JSON.parse(result) });
     }
   };
@@ -70,26 +70,33 @@ export default class Search extends React.Component {
 
     return (
       <View style={styles.MainContainer}>
-        <RNPickerSelect
-          style={{height: 100}}
-          onValueChange={(value) => {
-            this._selectCategoryChanged(value);
-          }}
-          items={[
-            { label: 'producteurs', value: 'farmers' },
-            { label: 'fermes', value: 'farms' },
-            { label: 'produits', value: 'products' },
-            { label: 'labels', value: 'labels' },
-            { label: 'valeurs nutritionnels', value: 'nutrition' },
-          ]}
-        />
+        <View style={styles.TextInputStyleClass}>
+          <RNPickerSelect
+            onValueChange={(value) => {
+              this._selectCategoryChanged(value);
+            }}
+            items={[
+              { label: 'producteurs', value: 'farmers' },
+              { label: 'fermes', value: 'farms' },
+              { label: 'produits', value: 'products' },
+              { label: 'labels', value: 'labels' },
+              { label: 'valeurs nutritionnels', value: 'nutrition' },
+            ]}
+          />
+          </View>
         <TextInput
-          style={styles.textinput}
+          style={styles.TextInputStyleClass}
           placeholder='Enter a film title'
           onChangeText={(text) => this._searchTextInputChanged(text)}
           onSubmitEditing={() => this._searchResults()}
         />
-        <Button title='Search' onPress={() => this._searchResults()}/>
+        <TouchableOpacity
+          activeOpacity = { .4 }
+          style={styles.TouchableOpacitySubmitStyle}
+          onPress={() => this._searchResults()}
+        >
+          <Text style={styles.TextStyle}>Rechercher</Text>
+        </TouchableOpacity>
 
         <ScrollView>
         {
@@ -128,22 +135,37 @@ export default class Search extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  MainContainer: {
     flex: 1,
-    marginTop: 20,
-    marginBottom: 1,
-    marginHorizontal: 1,
-    padding: 3,
-    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    backgroundColor: '#fff'
   },
-  textinput: {
-    height: 70,
-    marginVertical: 1,
-    borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, 0.4)',
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+  TextInputStyleClass: {
     textAlign: 'center',
-    color: '#000'
+    width: '90%',
+    marginBottom: 7,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#FF5722',
+    borderRadius: 5
+  },
+  TouchableOpacitySubmitStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: '90%',
+    backgroundColor: '#52AD9C'
+  },
+  TextInputStyleClass: {
+    textAlign: 'center',
+    width: '90%',
+    marginBottom: 7,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#47624F',
+    borderRadius: 5 ,
   },
   loading_container: {
     position: 'absolute',
@@ -154,5 +176,25 @@ const styles = StyleSheet.create({
     top: 110,
     bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.8)'
+  },
+  TouchableOpacityContainer: {
+    // flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    backgroundColor: '#fff'
+  },
+  TouchableOpacityStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: '90%',
+    backgroundColor: '#00BCD4'
+  },
+  TextStyle: {
+    color:'#fff',
+    textAlign:'center',
+    textTransform: 'uppercase'
   }
 });
