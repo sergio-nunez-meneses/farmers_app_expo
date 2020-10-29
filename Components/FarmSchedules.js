@@ -35,21 +35,21 @@ export default class EditFarmer extends React.Component {
     // console.log(tableRow);
 
     return (
-      <View style={styles1.container}>
+      <View style={styles.MainContainer}>
         <ScrollView horizontal={true}>
           <View>
             <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
-              <Row data={this.state.tableHead} widthArr={this.state.tableWidth} style={{height: 50}} textStyle={{textAlign: 'center', fontWeight: '100', textTransform: 'uppercase'}}/>
+              <Row data={this.state.tableHead} widthArr={this.state.tableWidth} style={{height: 50, backgroundColor: '#447604'}} textStyle={{textAlign: 'center', fontWeight: '100', textTransform: 'uppercase', color: '#fff'}}/>
             </Table>
             <ScrollView style={styles1.dataWrapper}>
-              <Table borderStyle={{borderWidth: 1, borderColor: '#C1C0B9'}}>
+              <Table borderStyle={{borderWidth: 1, borderColor: '#ddd'}}>
               {
                 tableRow.map((rowData, index) => (
                   <Row
                     key={index}
                     data={rowData}
                     widthArr={this.state.tableWidth}
-                    style={[styles1.row, index%2 && {backgroundColor: '#F7F6E7'}]}
+                    style={[styles1.row, index%2 && {backgroundColor: '#6CC551'}]}
                     textStyle={styles1.text}
                   />
                 ))
@@ -60,12 +60,15 @@ export default class EditFarmer extends React.Component {
         </ScrollView>
 
         {/* back to farm details */}
-        <TouchableOpacity
-          style={{ backgroundColor: '#FF0099'}}
-          onPress={() => { navigation.navigate('FarmDetails'); }}
-        >
-          <Text style={styles.DataStyle}>Retourner à la Ferme</Text>
-        </TouchableOpacity>
+        <View style={styles.TouchableOpacityContainer}>
+          <TouchableOpacity
+            activeOpacity = { .4 }
+            style={styles.TouchableOpacityStyle}
+            onPress={() => { navigation.navigate('FarmDetails'); }}
+          >
+            <Text style={styles.TextStyle}>Retourner à la Ferme</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -74,6 +77,7 @@ export default class EditFarmer extends React.Component {
 const styles1 = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
     padding: 16,
     paddingTop: 30,
     backgroundColor: '#fff'
@@ -91,7 +95,7 @@ const styles1 = StyleSheet.create({
   },
   row: {
     height: 40,
-    backgroundColor: '#E7E6E1'
+    backgroundColor: '#9CFCDE'
   }
 });
 
@@ -111,20 +115,21 @@ const styles = StyleSheet.create({
     borderColor: '#FF5722',
     borderRadius: 5
   },
+  TouchableOpacityContainer: {
+    // flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    padding: 5,
+    backgroundColor: '#fff'
+  },
   TouchableOpacitySubmitStyle: {
     paddingTop: 20,
     paddingBottom: 20,
     borderRadius: 5,
     marginBottom: 10,
     width: '90%',
-    backgroundColor: '#FF0000'
-  },
-  TouchableOpacityContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    backgroundColor: '#fff'
+    backgroundColor: '#52AD9C'
   },
   TouchableOpacityStyle: {
     paddingTop: 20,
@@ -142,5 +147,10 @@ const styles = StyleSheet.create({
     color:'#000',
     textAlign:'center',
     textTransform: 'uppercase'
-  }
+  },
+  TextStyle: {
+    color:'#fff',
+    textAlign:'center',
+    textTransform: 'uppercase'
+  },
 });

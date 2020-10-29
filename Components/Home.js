@@ -25,7 +25,7 @@ export default class Home extends React.Component {
             paddingBottom: 20,
             borderRadius: 5,
             marginBottom: 10,
-            width: '50%',
+            width: '80%',
             backgroundColor: '#47624F',
           }}
           onPress={() => { navigation.navigate('FarmersMap'); }}
@@ -40,7 +40,7 @@ export default class Home extends React.Component {
             paddingBottom: 20,
             borderRadius: 5,
             marginBottom: 10,
-            width: '50%',
+            width: '80%',
             backgroundColor: '#52AD9C',
           }}
           onPress={() => { navigation.navigate('FarmersList'); }}
@@ -55,7 +55,7 @@ export default class Home extends React.Component {
             paddingBottom: 20,
             borderRadius: 5,
             marginBottom: 10,
-            width: '50%',
+            width: '80%',
             backgroundColor: '#00BCD4',
           }}
           onPress={() => { navigation.navigate('Search'); }}
@@ -70,7 +70,7 @@ export default class Home extends React.Component {
             paddingBottom: 20,
             borderRadius: 5,
             marginBottom: 10,
-            width: '50%',
+            width: '80%',
             backgroundColor: '#6CC551',
           }}
           onPress={() => { navigation.navigate('ClientRegistration'); }}

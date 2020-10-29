@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -102,17 +103,29 @@ export default class Search extends React.Component {
         {
           this.state.data.map((item) => (
             <React.Fragment key={item.id.toString()}>
-              <View style={{marginVertical: 5}}>
-                <Text style={styles.DataStyle}>Avatar</Text>
+              <View style={{width: '100%', marginVertical: 5}}>
+                <Image
+                  style={styles.AvatarPhoto}
+                  source={{uri: 'https://img.pngio.com/account-avatar-circle-people-profile-user-icon-circle-people-png-512_512.png'}}
+                />
                 <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
+                  style={{
+                    backgroundColor: '#47624F',
+                    color: '#fff'
+                  }}
                   onPress={() => {
                     navigation.navigate('FarmDetails', {
                       item: item
                     });
                 }}>
-                  <Text style={styles.DataStyle}>{item.name}</Text>
-                </TouchableOpacity>
+                <Text style={{
+                  paddingHorizontal: 80,
+                  paddingVertical: 5,
+                  color:'#fff',
+                  textAlign:'center',
+                  textTransform: 'uppercase'
+                }}>{item.name}</Text>
+              </TouchableOpacity>
               </View>
             </React.Fragment>
           ))
@@ -126,7 +139,7 @@ export default class Search extends React.Component {
             style={styles.TouchableOpacityStyle}
             onPress={() => { navigation.navigate('Home'); }}
           >
-            <Text style={styles.TextStyle}>retour au menu principal</Text>
+            <Text style={styles.TextStyle}>Retour à l'accueil</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -196,5 +209,11 @@ const styles = StyleSheet.create({
     color:'#fff',
     textAlign:'center',
     textTransform: 'uppercase'
-  }
+  },
+  AvatarPhoto: {
+    width: '100%',
+    height: 100,
+    // margin: 1,
+    backgroundColor: 'transparent'
+  },
 });

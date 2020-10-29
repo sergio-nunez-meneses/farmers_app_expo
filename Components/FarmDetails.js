@@ -38,13 +38,15 @@ export default class EditFarmer extends React.Component {
     const { id, name, email, phone, Farms } = route.params.item;
     console.log(Farms);
 
-    if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
-      this.setState({ ...this.state, region: {
-        latitude: parseFloat(Farms[0].location.split(',')[0]),
-        longitude: parseFloat(Farms[0].location.split(',')[1]),
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
-      }})
+    if (Farms.length !== 0) {
+      if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
+        this.setState({ ...this.state, region: {
+          latitude: parseFloat(Farms[0].location.split(',')[0]),
+          longitude: parseFloat(Farms[0].location.split(',')[1]),
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }})
+      }
     }
 
     return (
@@ -59,9 +61,9 @@ export default class EditFarmer extends React.Component {
                 />
                 <Text style={styles.DataStyle}>{item.name}</Text>
                 <Text style={styles.DataStyle}>{item.address}, {item.postal_code} {item.city}</Text>
-                <Text style={styles.DataStyle}>{item.website}</Text>
+                {/* <Text style={styles.DataStyle}>{item.website}</Text> */}
 
-                <View style={{height: '80%'}}>
+                <View style={{height: '56%'}}>
                   <MapView
                     showsPointsOfInterest={true}
                     provider="google"
@@ -93,35 +95,36 @@ export default class EditFarmer extends React.Component {
                 </View>
 
                 {/* farm schedules */}
-                <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
-                  onPress={() => {
-                    navigation.navigate('FarmSchedules', {
-                      item: item
-                    });
-                }}>
-                  <Text style={styles.DataStyle}>Voir les horaires</Text>
-                </TouchableOpacity>
+                <View style={styles.TouchableOpacityContainer}>
+                  <TouchableOpacity
+                    style={styles.TouchableOpacityStyle}
+                    onPress={() => {
+                      navigation.navigate('FarmSchedules', {
+                        item: item
+                      });
+                  }}>
+                    <Text style={styles.TextStyle}>Voir les horaires</Text>
+                  </TouchableOpacity>
 
-                {/* farm products */}
-                <TouchableOpacity
-                  style={{ backgroundColor: '#0058b8'}}
-                  onPress={() => {
-                    navigation.navigate('FarmProducts', {
-                      item: item
-                    });
-                }}>
-                  <Text style={styles.DataStyle}>Voir les produits</Text>
-                </TouchableOpacity>
+                  {/* farm products */}
+                  <TouchableOpacity
+                    style={styles.TouchableOpacityStyle}
+                    onPress={() => {
+                      navigation.navigate('FarmProducts', {
+                        item: item
+                      });
+                  }}>
+                    <Text style={styles.TextStyle}>Voir les produits</Text>
+                  </TouchableOpacity>
 
-                {/* back to farmers list */}
-                <TouchableOpacity
-                  style={{ backgroundColor: '#FF0999'}}
-                  onPress={() => { navigation.navigate('FarmersList'); }}
-                >
-                  <Text style={styles.DataStyle}>Retourner</Text>
-                </TouchableOpacity>
-
+                  {/* back to farmers list */}
+                  <TouchableOpacity
+                    style={styles.TouchableOpacitySubmitStyle}
+                    onPress={() => { navigation.navigate('FarmersList'); }}
+                  >
+                    <Text style={styles.TextStyle}>Retourner à la liste</Text>
+                  </TouchableOpacity>
+                </View>
               </React.Fragment>
             ))
           }
@@ -152,11 +155,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     borderRadius: 5,
     marginBottom: 10,
-    width: '90%',
-    backgroundColor: '#FF0000'
+    width: '95%',
+    backgroundColor: '#52AD9C'
   },
   TouchableOpacityContainer: {
     flex: 1,
+    padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
@@ -165,10 +169,11 @@ const styles = StyleSheet.create({
   TouchableOpacityStyle: {
     paddingTop: 20,
     paddingBottom: 20,
+    paddingHorizontal: 10,
     borderRadius: 5,
     marginBottom: 10,
-    width: '90%',
-    backgroundColor: '#00BCD4'
+    width: '95%',
+    backgroundColor: '#6CC551'
   },
   DataStyle: {
     borderWidth: 1,
@@ -185,4 +190,9 @@ const styles = StyleSheet.create({
     // margin: 1,
     backgroundColor: 'transparent'
   },
+  TextStyle: {
+    color:'#fff',
+    textAlign:'center',
+    textTransform: 'uppercase'
+  }
 });

@@ -100,7 +100,7 @@ export default class Navigation extends React.Component {
             name="FarmSchedules"
             component={FarmSchedules}
             options={{
-              title: 'hORAIRES',
+              title: 'Horaires',
               headerStyle: {
                 backgroundColor: '#447604',
                 elevation: 0,
