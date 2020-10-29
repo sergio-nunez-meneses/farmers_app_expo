@@ -79,24 +79,15 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: '#08585E'
   },
-<<<<<<< HEAD
   CardContainer: {
     flex: 3,
     alignItems: 'center',
     width: '100%',
   },
-=======
->>>>>>> 10fcf18143d8676835e110ee3c957bfc23a1348f
   TouchableOpacityContainer: {
     flex: 2,
     alignItems: 'center',
     width: '100%',
-<<<<<<< HEAD
-=======
-    marginTop: -80,
-    padding: 10,
-    backgroundColor: '#fff'
->>>>>>> 10fcf18143d8676835e110ee3c957bfc23a1348f
   },
   TouchableOpacityStyle: {
     paddingTop: 20,
