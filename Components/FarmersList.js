@@ -47,7 +47,7 @@ export default class FarmersList extends React.Component {
                 />
                 <TouchableOpacity
                   style={{
-                    backgroundColor: '#52AD9C',
+                    backgroundColor: '#47624F',
                     color: '#fff'
                   }}
                   onPress={() => {
@@ -100,14 +100,15 @@ export default class FarmersList extends React.Component {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    alignItems: 'center',
-    paddingTop: 10,
+    // alignItems: 'center',
+    width: '100%',
+    padding: 4,
     backgroundColor: '#fff'
   },
   AvatarPhoto: {
     width: '100%',
     height: 100,
-    margin: 1,
+    // margin: 1,
     backgroundColor: 'transparent'
   },
   TouchableOpacityContainer: {

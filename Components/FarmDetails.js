@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  Image,
   ScrollView,
   View,
   TextInput,
@@ -35,16 +36,16 @@ export default class EditFarmer extends React.Component {
     const { children, renderMarker, markers, route, navigation } = this.props;
     const { item } = route.params;
     const { id, name, email, phone, Farms } = route.params.item;
-    console.log(item, Farms);
+    console.log(Farms);
 
-    // if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
-    //   this.setState({ ...this.state, region: {
-    //     latitude: parseFloat(Farms[0].location.split(',')[0]),
-    //     longitude: parseFloat(Farms[0].location.split(',')[1]),
-    //     latitudeDelta: 0.0922,
-    //     longitudeDelta: 0.0421
-    //   }})
-    // }
+    if (this.state.region.latitude !== parseFloat(Farms[0].location.split(',')[0])) {
+      this.setState({ ...this.state, region: {
+        latitude: parseFloat(Farms[0].location.split(',')[0]),
+        longitude: parseFloat(Farms[0].location.split(',')[1]),
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }})
+    }
 
     return (
       <View style={styles.MainContainer}>
@@ -52,13 +53,15 @@ export default class EditFarmer extends React.Component {
           {
             Farms.map((item) => (
               <React.Fragment key={item.id.toString()}>
+                <Image
+                  style={styles.AvatarPhoto}
+                  source={{uri: 'https://local-farmers-api.herokuapp.com/images/' + item.FarmImages[0].name}}
+                />
                 <Text style={styles.DataStyle}>{item.name}</Text>
-                <Text style={styles.DataStyle}>Photo: {item.FarmImages[0].name}</Text>
-                <Text style={styles.DataStyle}>{item.address}, {item.postal_code}</Text>
-                <Text style={styles.DataStyle}>{item.city}</Text>
+                <Text style={styles.DataStyle}>{item.address}, {item.postal_code} {item.city}</Text>
                 <Text style={styles.DataStyle}>{item.website}</Text>
 
-                <View style={{height: '100%'}}>
+                <View style={{height: '80%'}}>
                   <MapView
                     showsPointsOfInterest={true}
                     provider="google"
@@ -66,7 +69,6 @@ export default class EditFarmer extends React.Component {
                     showsUserLocation
                     ref={ map => { this.map = map }}
                     renderMarker={renderMarker}
-                    // onMapReady={this.onMapReady}
                     showsMyLocationButton={true}
                     style={StyleSheet.absoluteFill}
                     textStyle={{ color: '#bc8b00' }}
@@ -176,5 +178,11 @@ const styles = StyleSheet.create({
     color:'#000',
     textAlign:'center',
     textTransform: 'uppercase'
-  }
+  },
+  AvatarPhoto: {
+    width: '100%',
+    height: 100,
+    // margin: 1,
+    backgroundColor: 'transparent'
+  },
 });
