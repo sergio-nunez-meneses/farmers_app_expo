@@ -34,19 +34,11 @@ export default class ClientRegistration extends React.Component {
         phone: this.state.TextInput_phone
       })
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        Alert.alert(responseJson);
-      })
+      .then(() => { this.props.navigation.navigate('ClientContributions'); })
       .catch((error) => {
-        Alert.alert(error);
-      })
-      .finally(() => { this.props.navigation.navigate('ClientContributions') });
+        console.error(error);
+      });
   }
-
-  // home = () => {
-  //   this.props.navigation.navigate('Home');
-  // }
 
   render() {
     return (
@@ -54,7 +46,7 @@ export default class ClientRegistration extends React.Component {
         <View style={styles.FormContainer}>
           <Text style={{marginBottom: 8, fontSize: 20, textAlign: 'center', textTransform: 'uppercase'}}>Inscrivez-vous pour nous transmettre vos contributions !</Text>
           <TextInput
-            placeholder="name"
+            placeholder="votre prénom et nom"
             onChangeText={ TextInputValue => this.setState({
               TextInput_name: TextInputValue
             }) }
@@ -70,8 +62,7 @@ export default class ClientRegistration extends React.Component {
             style={styles.TextInputStyleClass}
           />
           <TextInput
-            secureTextEntry={true}
-            placeholder="phone"
+            placeholder="portable"
             onChangeText={ TextInputValue => this.setState({
               TextInput_phone: TextInputValue
             }) }
@@ -83,7 +74,7 @@ export default class ClientRegistration extends React.Component {
             style={styles.TouchableOpacitySubmitStyle}
             onPress={this.registerClient}
           >
-            <Text style={styles.TextStyle}> submit </Text>
+            <Text style={styles.TextStyle}> envoyer </Text>
           </TouchableOpacity>
         </View>
 
