@@ -37,6 +37,14 @@ export default class Home extends React.Component {
         <TouchableOpacity
           activeOpacity = { .4 }
           style={styles.TouchableOpacityStyle}
+          onPress={() => { navigation.navigate('Search'); }}
+        >
+          <Text style={styles.TextStyle}> rechercher </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          activeOpacity = { .4 }
+          style={styles.TouchableOpacityStyle}
           onPress={() => { navigation.navigate('ClientRegistration'); }}
         >
           <Text style={styles.TextStyle}> contribuer !</Text>

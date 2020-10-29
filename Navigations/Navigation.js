@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Components/Home';
+import Search from '../Components/Search';
 import FarmersMap from '../Components/FarmersMap';
 import FarmersList from '../Components/FarmersList';
 import FarmDetails from '../Components/FarmDetails';
@@ -18,6 +19,7 @@ export default class Navigation extends React.Component {
       <NavigationContainer>
         <this.Stack.Navigator>
         <this.Stack.Screen name="Home" component={Home}/>
+        <this.Stack.Screen name="Search" component={Search}/>
           <this.Stack.Screen name="FarmersMap" component={FarmersMap}/>
           <this.Stack.Screen name="FarmersList" component={FarmersList}/>
           <this.Stack.Screen name="FarmDetails" component={FarmDetails}/>
